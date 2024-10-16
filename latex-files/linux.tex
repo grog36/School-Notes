@@ -1,0 +1,113 @@
+% Gregory Ecklund
+% September 2023
+% CS462 Linux Tools Notes
+
+\documentclass[12pt]{article}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[T1]{fontenc} % For some font enconding in the table?
+
+\title{CS462 Linux Tools Notes}
+\author{Gregory Ecklund}
+\date{\today}
+
+\begin{document}
+    \maketitle
+
+    \tableofcontents
+    \newpage
+
+    \section{Sed}
+    The sed utility is a stream editor that reads one or more files, makes changes 
+    according to a script of editing commands and writes the results to standard output. 
+    Sed performs many ed or ex commands. ed and ex are line editors, which were the original 
+    type of editors. Line editing commands are easier for scripting.
+
+    \subsection{Line Addressing}
+    \begin{tabular}{|l|l|}
+        \hline
+        n & absolute line number n \\
+        \hline
+        i, j & range of lines from line i to line j \\
+        \hline
+        + & go forward one line \\
+        \hline
+        - & go backwards one line \\
+        \hline
+        +n & go forward n lines \\
+        \hline
+        -n & go backward n lines \\
+        \hline
+    \end{tabular}
+
+    \subsection{Line Editing Commands}
+    \begin{tabular}{|l|l|}
+        \hline
+        addr & goto addr \\
+        \hline
+        [addr] 1 & print line(s) to standard output \\
+        \hline
+        /<pattern> & goto first line that matches pattern \\
+        \hline
+        ?<pattern> & goto last line that matches the pattern \\
+        \hline
+        [addr] a text . & append text (line by line) after addr until a '.' is typed in the first column \\
+        \hline
+        [addr] i text . & insert text (line by line) before addr until a '.' is typed in the first column \\
+        \hline
+        [addr] d & delete specified lines(s) \\
+        \hline
+        [addr] c text . & replace specified line(s) with text until a '.' is typed in the first column \\
+        \hline
+        [addr] s/pat1/pat2/ & substitute pat2 for pat1 at addr \\
+        \hline
+    \end{tabular}
+
+    \subsection{Using Editing Commands in Sed}
+    Sed editing commands are implicitly global (applied to every line in the file).
+    Example sed scripts:
+    \begin{itemize}
+        \item \begin{verbatim}50d\end{verbatim}
+        \item \begin{verbatim}/^#/d\end{verbatim}
+        \item \begin{verbatim}/Smith/,$d\end{verbatim}
+        \item \begin{verbatim}s/old/new/\end{verbatim}
+        \item \begin{verbatim}s/old/new/g\end{verbatim}
+        \item \begin{verbatim}s/old/new/2\end{verbatim}
+    \end{itemize}
+
+    \subsection{Performing Multiple Commands on a Match}
+    Can use curly braces to perform multiple commands on a single match
+    Example: Make each list element within an ordered list a paragraph and change the 
+    ordered list to an unordered list in an html file.
+    \begin{verbatim}
+        /^<ol>/,/^<\/ol>/{
+        s/^<ol>/<ul>/
+        s/^<li>/<p><li>/
+        s/^<\/ol>/<\/ul>/
+        }
+    \end{verbatim}
+
+    \subsection{Referencing the Search String}
+    The ampersand (\&) represents the extent of the pattern was matched and can be
+    referenced in the replacement string.
+    Examples:
+    \begin{itemize}
+        \item s/[A-Z][A-Z][A-Z]*/"\&"/g --- quote all acronyms
+        \item s/[Uu]nix/"\&"/g --- quote all references to Unix or unix
+    \end{itemize}
+
+    \subsection{Referencing Portions of a Search String}
+    \begin{verbatim}
+    Can reference portions of a search string by enclosing them in escaped
+    parentheses, "\(" and "\)", and referencing them by \<num> in the 
+    replacement string. Example: Reversing the order of the first two 
+    integer values separated by a colon in a file.
+    \end{verbatim}
+    \begin{itemize}
+        \item \begin{verbatim}s/^\([0-9]*\):\([0-9]*\)/|2:\1/\end{verbatim}
+    \end{itemize}
+    
+
+
+
+\end{document}

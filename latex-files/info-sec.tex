@@ -1,0 +1,129 @@
+% Gregory Ecklund
+% September 2024
+% CS-466: Information Security I
+
+\documentclass[12pt]{article}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+\title{Information Securit I Notes}
+\author{Gregory Ecklund}
+\date{\today}
+
+\begin{document}
+    \maketitle
+    \newpage
+
+    \section{Fundamental Security Design Principles}
+        \begin{itemize}
+            \item Economy of mechanism
+                \begin{itemize}
+                    \item Simple and as small as possible
+                    \item Complex designs increase cost, time, testing needs and the likelihood
+                    of an exploit or bug
+                \end{itemize}
+            \item Fail-safe defaults
+                \begin{itemize}
+                    \item Access decisions should be based on permission rather than exclusion
+                    \item The default is lack of access with permissions added
+                    \item This approach exhibits better fail-safe characteristics
+                \end{itemize}
+            \item Complete mediation
+                \begin{itemize}
+                    \item Every access must be checked against access control mechanism
+                    \item Access permissions should not be derived from a cache
+                    \item If the system depends on cached information it changes in authority will
+                    be less immediate
+                \end{itemize}
+            \item Open design
+                \begin{itemize}
+                    \item An open design has a higher degree of professional scrutiny
+                    \item Standardization also promotes system compatibility
+                    \item Tried and tested is better than bespoke and unknown
+                \end{itemize}
+            \item Separation of privilege
+                \begin{itemize}
+                    \item Multiple privilege attributes are required to access a restricted resource
+                    \item Also, high privilege operations in separate processes with a higher level of
+                    privilege needed
+                        \begin{itemize}
+                            \item User
+                            \item Super User
+                            \item Administrator
+                        \end{itemize}
+                \end{itemize}
+            \item Least privilege
+                \begin{itemize}
+                    \item Every process and user should operate using the least set of privileges to perform the task
+                    \item Roles and associated privileges should be defined in security policies
+                    \item Administrators with special privileges should be granted those 'special' privileges
+                    only when needed
+                        \begin{itemize}
+                            \item Leaving special privileges on all the time increases risk
+                        \end{itemize}
+                \end{itemize}
+            \item Least common mechanism
+                \begin{itemize}
+                    \item Minimize the amount of mechanism common to more than one user and depended on by all users
+                    \item A shared mechanism is a potential information path between users and should be designed
+                    with care
+                    \item For example, the same authentication method should not be used to authenticate employers
+                    of a company and non-employee users of its popular website
+                \end{itemize}
+            \item Psychological acceptability
+                \begin{itemize}
+                    \item Security methods must
+                        \begin{itemize}
+                            \item Be user friendly
+                            \item Not interfere with work of users
+                            \item Meet the needs of those who authorize access
+                        \end{itemize}
+                \end{itemize}
+            \item Isolation
+                \begin{itemize}
+                    \item Access systems should be isolated (physically and logically) from critical resources to
+                    prevent disclosure or harm caused by tampering
+                    \item Processes and files of users should be isolated from each other
+                \end{itemize}
+            \item Encapsulation
+                \begin{itemize}
+                    \item A basic form of isolation rooted in object oriented programming practices
+                        \begin{itemize}
+                            \item Keeping class and object members private and hidden unless there is a reason not to
+                            \item Use setter methods (mutators) to ensure fields set within valid, safe values
+                            \item Each class having one well defined purpose
+                        \end{itemize}
+                    \item All of this prevents accidental or miss intended use of an application and its functions
+                \end{itemize}
+            \item Modularity
+                \begin{itemize}
+                    \item Security functions should embody a modular architecture for mechanism implementation
+                    \item Common security modules such as cryptographic algorithms developed for reuse
+                    \item Coding to an interface allows easy substitution for other implementations
+                    \item Code for reuse. Less code repetition leads to a safer system, that is less prone to error
+                    and is easier to test and maintain
+                \end{itemize}
+            \item Layering
+                \begin{itemize}
+                    \item Layering refers to multiple overlapping security protections
+                    \item The failure or circumnavigation of one system will not leave the rest unprotected
+                    \item \textbf{Layers:}
+                        \begin{enumerate}
+                            \item Physical Security
+                            \item Identity and Access
+                            \item Perimeter
+                            \item Network
+                            \item Compute
+                            \item Application
+                            \item Data
+                        \end{enumerate}
+                \end{itemize}
+            \item Least astonishment
+                \begin{itemize}
+                    \item A program or user interface should always respond in a way least likely to astonish the user
+                    \item For example, it should be transparent enough for the user to see how the security goals
+                    map to the provided security mechanism
+                    \item This principle can also be applied to code modules used by other developers
+                \end{itemize}
+        \end{itemize}
+\end{document}
