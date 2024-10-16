@@ -1,0 +1,14 @@
+#Ignore all files
+/*
+#Except pdfs
+!/pdfs
+!/pdfs/*
+#Except latex files
+!/latex-files
+!/latex-files/*
+#Except README
+!/README.md
+#Except todo
+!/todo.txt
+#Except gitignore
+!/.gitignore
