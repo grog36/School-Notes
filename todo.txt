@@ -1,3 +1,0 @@
--Finish ND190 notes (Chapter 16) and update the agora website.
--CHEM241, COMM201, CS150, CS253, MATH441, SPAN302 (vocab?)
--CS466, CS453 (database), CS364 (S.E.)
