@@ -1,0 +1,25 @@
+Classes to do:
+ - CHEM140
+ - CHEM241
+ - COMM201
+ - CS150
+ - CS253
+ - CS260
+ - CS352
+ - CS364
+ - CS453
+ - CS462
+ - ECON231
+ - MATH153
+ - MATH441
+
+Finished:
+ - ENGL101
+ - SPAN302
+ - SPAN301
+ - ND190 (a few quirks, but done)
+ - MATH310 (dr.budden's pdf)
+
+WIP:
+ - CS466
+ - FIN210
